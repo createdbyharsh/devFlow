@@ -6,11 +6,11 @@ import { signIn } from "next-auth/react";
 import ROUTES from "@/constants/routes";
 
 const SocialAuthForm = () => {
-  const handleSignIn = async (provider: "GitHub" | "google") => {
+  const handleSignIn = async (provider: "GitHub" | "Google") => {
     try {
       await signIn(provider, {
         callbackUrl: ROUTES.HOME,
-        redirect: false,
+        redirect: true,
       });
     } catch (error) {
       console.log(error);
@@ -28,7 +28,7 @@ const SocialAuthForm = () => {
       </Button>
       <Button
         className="background-dark400_light900 body-medium text-dark200_light800 min-h-12 flex-1 px-4 py-3.5"
-        onClick={() => handleSignIn("google")}
+        onClick={() => handleSignIn("Google")}
       >
         Log in with Google
       </Button>
