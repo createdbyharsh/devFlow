@@ -1,3 +1,4 @@
+// Dark and light mode
 "use client";
 
 import * as React from "react";
