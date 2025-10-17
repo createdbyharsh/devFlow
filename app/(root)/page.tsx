@@ -7,15 +7,7 @@ export default async function Home() {
   console.log(session);
   return (
     <div>
-      <h1>Hello world</h1>
-      <form
-        action={async () => {
-          "use server";
-          await signOut({ redirectTo: ROUTES.SIGN_IN });
-        }}
-      >
-        <Button type="submit">Log Out</Button>
-      </form>
+      <h1>hello</h1>
     </div>
   );
 }
