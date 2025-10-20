@@ -1,3 +1,4 @@
+import HomeFilter from "@/components/filters/HomeFilter";
 import LocalSearch from "@/components/search.tsx/LocalSearch";
 import { Button } from "@/components/ui/button";
 import ROUTES from "@/constants/routes";
@@ -8,7 +9,6 @@ type SearchParamsProps = {
 };
 
 export default async function Home({ searchParams }: SearchParamsProps) {
-  const { query = "" } = await searchParams;
   const questions = [
     {
       _id: "1",
@@ -29,7 +29,7 @@ export default async function Home({ searchParams }: SearchParamsProps) {
       title: "How to learn JavaScript?",
       description: "I want to learn JavaScript, can anyone help me?",
       tags: [
-        { _id: "1", name: "React" },
+        { _id: "1", name: "Javascript" },
         { _id: "2", name: "JavaScript" },
       ],
       author: { _id: "1", name: "John Doe" },
@@ -38,16 +38,20 @@ export default async function Home({ searchParams }: SearchParamsProps) {
       views: 100,
       createdAt: new Date(),
     },
-    {
-      _id: "3",
-      title: "What is TypeScript?",
-      description: "Can someone explain TypeScript to me?",
-    },
   ];
 
-  const filteredQuestions = questions.filter((x) =>
-    x.title.toLowerCase().includes(query.toLowerCase())
-  );
+  const { query = "", filter = "" } = await searchParams; //read both from url
+
+  const filteredQuestions = questions.filter((x) => {
+    //1. check if the title match the search query?
+    const matchesQuery = x.title.toLowerCase().includes(query.toLowerCase());
+    //2. check if the tag match the filters
+    const matchFilter = filter
+      ? x.tags[0].name.toLowerCase() === filter.toLowerCase()
+      : true;
+    return matchesQuery && matchFilter;
+  });
+
   return (
     <>
       <section className="flex w-full flex-col-reverse justify-between gap-4 sm:flex-row sm:items-center">
@@ -74,6 +78,8 @@ export default async function Home({ searchParams }: SearchParamsProps) {
           </p>
         )}
       </section>
+      <HomeFilter />
+
       <section>
         <div className="mt-6 space-y-4">
           {filteredQuestions.map((x) => (
