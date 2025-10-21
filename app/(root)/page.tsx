@@ -1,3 +1,4 @@
+import QuestionCard from "@/components/cards/QuestionCard";
 import HomeFilter from "@/components/filters/HomeFilter";
 import LocalSearch from "@/components/search.tsx/LocalSearch";
 import { Button } from "@/components/ui/button";
@@ -18,7 +19,12 @@ export default async function Home({ searchParams }: SearchParamsProps) {
         { _id: "1", name: "React" },
         { _id: "2", name: "JavaScript" },
       ],
-      author: { _id: "1", name: "John Doe" },
+      author: {
+        _id: "1",
+        name: "John Doe",
+        image:
+          "https://static.vecteezy.com/system/resources/previews/002/002/403/non_2x/man-with-beard-avatar-character-isolated-icon-free-vector.jpg",
+      },
       upvotes: 10,
       answers: 5,
       views: 100,
@@ -32,7 +38,12 @@ export default async function Home({ searchParams }: SearchParamsProps) {
         { _id: "1", name: "Javascript" },
         { _id: "2", name: "JavaScript" },
       ],
-      author: { _id: "1", name: "John Doe" },
+      author: {
+        _id: "1",
+        name: "John Doe",
+        image:
+          "https://static.vecteezy.com/system/resources/previews/002/002/403/non_2x/man-with-beard-avatar-character-isolated-icon-free-vector.jpg",
+      },
       upvotes: 10,
       answers: 5,
       views: 100,
@@ -84,8 +95,7 @@ export default async function Home({ searchParams }: SearchParamsProps) {
         <div className="mt-6 space-y-4">
           {filteredQuestions.map((x) => (
             <div key={x._id}>
-              <h2>{x.title}</h2>
-              <p>{x.description}</p>
+              <QuestionCard title={x.title} />
             </div>
           ))}
         </div>
