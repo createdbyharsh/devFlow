@@ -95,7 +95,7 @@ export default async function Home({ searchParams }: SearchParamsProps) {
         <div className="mt-6 space-y-4">
           {filteredQuestions.map((x) => (
             <div key={x._id}>
-              <QuestionCard title={x.title} />
+              <QuestionCard question={x} />
             </div>
           ))}
         </div>
