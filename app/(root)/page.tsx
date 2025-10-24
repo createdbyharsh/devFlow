@@ -36,11 +36,11 @@ export default async function Home({ searchParams }: SearchParamsProps) {
       description: "I want to learn JavaScript, can anyone help me?",
       tags: [
         { _id: "1", name: "Javascript" },
-        { _id: "2", name: "typeScript" },
+        { _id: "2", name: "JavaScript" },
       ],
       author: {
-        _id: "2",
-        name: "lia Doe",
+        _id: "1",
+        name: "John Doe",
         image:
           "https://static.vecteezy.com/system/resources/previews/002/002/403/non_2x/man-with-beard-avatar-character-isolated-icon-free-vector.jpg",
       },
