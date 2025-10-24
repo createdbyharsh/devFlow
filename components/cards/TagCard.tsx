@@ -1,10 +1,10 @@
-import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
 import ROUTES from "@/constants/routes";
 import { getDeviconClassName } from "@/lib/utils";
 
+import Image from "next/image";
 import { Badge } from "../ui/badge";
 
 interface Props {
@@ -41,14 +41,12 @@ const TagCard = ({
           <i className={`${iconClass} text-sm`}></i>
           <span>{name}</span>
         </div>
-
         {remove && (
           <Image
             src="/icons/close.svg"
             width={12}
             height={12}
             alt="close icon"
-            className="cursor-pointer object-contain invert-0 dark:invert"
             onClick={handleRemove}
           />
         )}
@@ -62,15 +60,24 @@ const TagCard = ({
 
   if (compact) {
     return isButton ? (
-      <button onClick={handleClick} className="flex justify-between gap-2">
-        {Content}
-      </button>
+      <button>{Content}</button>
     ) : (
-      <Link href={ROUTES.TAGS(_id)} className="flex justify-between gap-2">
-        {Content}
-      </Link>
+      <Link href={ROUTES.TAGS(_id)}>{Content}</Link>
     );
   }
+  return (
+    <Link href={ROUTES.TAGS(_id)} className="flex justify-between gap-2">
+      <Badge className="...">
+        <div className="flex-center space-x-2">
+          <i className={`${iconClass} text-sm`}></i>
+          <span>{name}</span>
+        </div>
+      </Badge>
+      {showCount && (
+        <p className="small-medium text-dark500_light700">{questions}</p>
+      )}
+    </Link>
+  );
 };
 
 export default TagCard;
