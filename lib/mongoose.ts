@@ -12,8 +12,6 @@ interface MongooseCache {
 }
 
 declare global {
-  // Avoid TypeScript error when reusing global in dev mode (Next.js)
-  // eslint-disable-next-line no-var
   var mongoose: MongooseCache | undefined;
 }
 
