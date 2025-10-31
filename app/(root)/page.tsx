@@ -3,6 +3,8 @@ import HomeFilter from "@/components/filters/HomeFilter";
 import LocalSearch from "@/components/search.tsx/LocalSearch";
 import { Button } from "@/components/ui/button";
 import ROUTES from "@/constants/routes";
+import { api } from "@/lib/api";
+import handleError from "@/lib/handlers/error";
 import Link from "next/link";
 
 type SearchParamsProps = {
@@ -50,19 +52,17 @@ const questions = [
   },
 ];
 
-// const test = async () => {
-//   try {
-//     throw new ValidationError({
-//       title: ["Required"],
-//       tags: ['"Javascript" is not a valid tag.'],
-//     });
-//   } catch (error) {
-//     return handleError(error);
-//   }
-// };
+const test = async () => {
+  try {
+    return await api.users.getAll();
+  } catch (error) {
+    return handleError(error);
+  }
+};
 
 export default async function Home({ searchParams }: SearchParamsProps) {
-  // await test();
+  const users = await test();
+  console.log(users);
   const { query = "", filter = "" } = await searchParams; //read both from url
 
   const filteredQuestions = questions.filter((x) => {
